@@ -21,6 +21,17 @@ grad = zeros(size(theta));
 
 
 
+h = X*theta;
+% calculate penalty
+% excluded the first theta value
+theta1 = [0 ; theta(2:end, :)];
+p = lambda*(theta1'*theta1)/(2*m);
+J = sum((h-y).^2)/(2*m) + p;
+
+% calculate grads
+grad = (X'*(h - y)+lambda*theta1)/m;
+
+
 
 
 
